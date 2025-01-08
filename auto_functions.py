@@ -82,7 +82,6 @@ def autoEncoder(ratio_l, ratio_u, batch, W1, W2, xtrain, x_new, u, b1, b2, c1, c
         hidden = getoutPut(W1, W2, b1, b2, xtrain, accList)
         u = hidden
         print('Updated loss after autoencoder:', np.linalg.norm(p - np.dot(u, v.T)))
- pass
     # ذخیره ماتریس‌های نهایی
     with h5py.File('u_final_auto.h5', 'w') as hf:
         hf.create_dataset("u", data=u)
