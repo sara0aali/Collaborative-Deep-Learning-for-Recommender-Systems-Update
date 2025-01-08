@@ -1,7 +1,7 @@
 import h5py
 import numpy as np
 import random
-import auto_fun as auto
+import auto_functions as auto
 import time
 
 # Hyperparameters
