@@ -1,8 +1,6 @@
 import numpy as np
 import h5py
-from auto_functions import initialization, autoEncoder, getoutPut
 import auto_functions as auto
-W1, W2, b1, b2, c1, c2 = auto.initialization(INPUT_LAYER, HIDDEN_UNIT, mu, sigma)
 
 # Hyperparameters and Initialization
 INPUT_LAYER = 314
@@ -18,6 +16,12 @@ l2_v = 100.0  # L2 Regularization term for V
 batch = 500
 ratio_l = 10.0
 ratio_u = 1000000.0
+
+HIDDEN_UNIT = [HIDDEN_UNIT1, HIDDEN_UNIT2]
+
+# مقداردهی اولیه
+W1, W2, b1, b2, c1, c2 = auto.initialization(INPUT_LAYER, HIDDEN_UNIT, mu, sigma)
+
 
 def main(denoise=True):
     diction = [('ind_empleado', 5), ('pais_residencia', 24), ('sexo', 3), ('ind_nuevo', 2), ('indrel', 2), 
