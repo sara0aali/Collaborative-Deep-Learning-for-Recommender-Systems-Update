@@ -46,7 +46,7 @@ def main(denoise=True):
         rating_mat = hf['rating'][:]
 
     # مقداردهی اولیه
-    W1, W2, b1, b2, c1, c2 = auto.initialization(INPUT_LAYER, HIDDEN_UNIT, mu, sigma)
+    W1, W2, b1, b2, c1, c2 = initialization(INPUT_LAYER, HIDDEN_UNIT, mu, sigma)
     u = np.random.normal(0, 0.1, (rating_mat.shape[0], l))
     v = np.random.normal(0, 0.1, (rating_mat.shape[1], l))
 
