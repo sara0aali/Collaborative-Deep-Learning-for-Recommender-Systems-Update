@@ -1,7 +1,6 @@
 import numpy as np
 import h5py
-from auto_functions import initialization, autoEncoder, getoutPut
-
+from auto_functions as auto
 
 # Hyperparameters and Initialization
 INPUT_LAYER = 314
