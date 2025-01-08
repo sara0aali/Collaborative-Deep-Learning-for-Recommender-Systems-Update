@@ -83,7 +83,7 @@ def autoEncoder(ratio_l, ratio_u, batch, W1, W2, xtrain, x_new, u, b1, b2, c1, c
         # به‌روزرسانی وزن‌ها (اینجا باید کد واقعی قرار گیرد)
 
     hidden = getoutPut(W1, W2, b1, b2, xtrain, accList)
-
+       hidden = np.dot(xtrain, W1) + b1
     # ذخیره ماتریس‌های نهایی
     with h5py.File('u_final_auto.h5', 'w') as hf:
         hf.create_dataset("u", data=u)
