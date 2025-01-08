@@ -1,7 +1,5 @@
 import numpy as np
 import h5py
-from auto_functions import initialization, autoEncoder, getoutPut
-W1, W2, b1, b2, c1, c2 = initialization(INPUT_LAYER, HIDDEN_UNIT, mu, sigma)
 
 
 
