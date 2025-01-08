@@ -88,8 +88,7 @@ def autoEncoder(ratio_l, ratio_u, batch, W1, W2, xtrain, x_new, u, b1, b2, c1, c
     hidden = np.dot(xtrain, W1) + b1
     hidden = np.maximum(hidden, 0)  # اعمال ReLU
     hidden = np.dot(hidden, W2) + b2
-    return hidden
-
+ 
 
     # ذخیره ماتریس‌های نهایی
     with h5py.File('u_final_auto.h5', 'w') as hf:
@@ -109,5 +108,6 @@ def autoEncoder(ratio_l, ratio_u, batch, W1, W2, xtrain, x_new, u, b1, b2, c1, c
     with h5py.File('c2_final.h5', 'w') as hf:
         hf.create_dataset("c2", data=c2)
 
+   return hidden
 
 main(denoise=True)
