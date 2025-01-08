@@ -1,7 +1,8 @@
 import numpy as np
 import h5py
- 
 from auto_functions import initialization, autoEncoder, getoutPut
+
+
 # Hyperparameters and Initialization
 INPUT_LAYER = 314
 HIDDEN_UNIT1 = 40
