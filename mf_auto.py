@@ -93,3 +93,27 @@ def main(denoise=True):
     return hidden
 
 main(denoise=True)
+import numpy as np
+import h5py
+
+# ذخیره ماتریس‌های نهایی
+with h5py.File('u_final_auto.h5', 'w') as hf:
+    hf.create_dataset("u", data=u)
+with h5py.File('v_final_auto.h5', 'w') as hf:
+    hf.create_dataset("v", data=v)
+
+# ذخیره پیش‌بینی‌های مدل
+predictions = np.dot(u, v.T)
+np.save('predictions.npy', predictions)
+
+# ذخیره متریک‌های ارزیابی (در صورت وجود ground_truth)
+ground_truth = rating_mat  # فرض کنید ماتریس واقعی همان rating_mat است
+mae = np.mean(np.abs(predictions - ground_truth))
+rmse = np.sqrt(np.mean((predictions - ground_truth) ** 2))
+
+with open('evaluation_metrics.txt', 'w') as f:
+    f.write(f"MAE: {mae}\n")
+    f.write(f"RMSE: {rmse}\n")
+
+print("Files saved: u_final_auto.h5, v_final_auto.h5, predictions.npy, evaluation_metrics.txt")
+
