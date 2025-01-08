@@ -77,30 +77,32 @@ def main(denoise=True):
         loss = np.linalg.norm(p - np.dot(u, v.T)) + l2_u * np.linalg.norm(u) + l2_v * np.linalg.norm(v)
         print('Loss:', loss)
 def autoEncoder(ratio_l, ratio_u, batch, W1, W2, xtrain, x_new, u, b1, b2, c1, c2, accList, EPOCH_NUM, LEARNING_RATE, denoise=True):
-        # به‌روزرسانی وزن‌ها با استفاده از اتواینکودر
-        W1, W2, b1, b2, c1, c2 = autoEncoder(ratio_l, ratio_u, batch, W1, W2, xtrain, x_new, u, b1, b2, c1, c2, accList, EPOCH_NUM, LEARNING_RATE, denoise=True)
-        hidden = getoutPut(W1, W2, b1, b2, xtrain, accList)
-        u = hidden
-        print('Updated loss after autoencoder:', np.linalg.norm(p - np.dot(u, v.T)))
-    # ذخیره ماتریس‌های نهایی
-with h5py.File('u_final_auto.h5', 'w') as hf:
-    hf.create_dataset("u", data=u)
-with h5py.File('v_final_auto.h5', 'w') as hf:
-    hf.create_dataset("v", data=v)
-with h5py.File('W1_final.h5', 'w') as hf:
-    hf.create_dataset("W1", data=W1)
-with h5py.File('b1_final.h5', 'w') as hf:
-    hf.create_dataset("b1", data=b1)
-with h5py.File('c1_final.h5', 'w') as hf:
-    hf.create_dataset("c1", data=c1)
-with h5py.File('W2_final.h5', 'w') as hf:
-    hf.create_dataset("W2", data=W2)
-with h5py.File('b2_final.h5', 'w') as hf:
-    hf.create_dataset("b2", data=b2)
-with h5py.File('c2_final.h5', 'w') as hf:
-    hf.create_dataset("c2", data=c2)
+    for epoch in range(EPOCH_NUM):
+        # فرآیند آموزش اتواینکودر
+        print(f"Epoch {epoch + 1}/{EPOCH_NUM}...")
+        # به‌روزرسانی وزن‌ها (اینجا باید کد واقعی قرار گیرد)
 
+    hidden = getoutPut(W1, W2, b1, b2, xtrain, accList)
+
+    # ذخیره ماتریس‌های نهایی
+    with h5py.File('u_final_auto.h5', 'w') as hf:
+        hf.create_dataset("u", data=u)
+    with h5py.File('v_final_auto.h5', 'w') as hf:
+        hf.create_dataset("v", data=u)
+    with h5py.File('W1_final.h5', 'w') as hf:
+        hf.create_dataset("W1", data=W1)
+    with h5py.File('b1_final.h5', 'w') as hf:
+        hf.create_dataset("b1", data=b1)
+    with h5py.File('c1_final.h5', 'w') as hf:
+        hf.create_dataset("c1", data=c1)
+    with h5py.File('W2_final.h5', 'w') as hf:
+        hf.create_dataset("W2", data=W2)
+    with h5py.File('b2_final.h5', 'w') as hf:
+        hf.create_dataset("b2", data=b2)
+    with h5py.File('c2_final.h5', 'w') as hf:
+        hf.create_dataset("c2", data=c2)
 
     return hidden
+
 
 main(denoise=True)
