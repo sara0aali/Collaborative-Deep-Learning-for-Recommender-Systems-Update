@@ -101,9 +101,8 @@ with h5py.File('b2_final.h5', 'w') as hf:
     hf.create_dataset("b2", data=b2)
 with h5py.File('c2_final.h5', 'w') as hf:
     hf.create_dataset("c2", data=c2)
-
 # بازگشت خروجی
-return hidden
+  return hidden
 
 
 main(denoise=True)
