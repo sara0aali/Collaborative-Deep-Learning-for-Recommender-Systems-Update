@@ -18,7 +18,6 @@ batch = 500
 ratio_l = 10.0
 ratio_u = 1000000.0
 
-from auto_functions import initialization, autoEncoder, getoutPut
 
 def main(denoise=True):
     # تعریف تعداد نرون‌های لایه‌های مخفی به صورت یک لیست
