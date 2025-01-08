@@ -16,9 +16,7 @@ l2_v = 100.0  # L2 Regularization term for V
 batch = 500
 ratio_l = 10.0
 ratio_u = 1000000.0
-def initialization(INPUT_LAYER, HIDDEN_UNIT, mu, sigma):
-    # تعریف تابع
-    pass
+
 
 def main(denoise=True):
     # تعریف تعداد نرون‌های لایه‌های مخفی به صورت یک لیست
