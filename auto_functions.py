@@ -76,13 +76,13 @@ def main(denoise=True):
         # محاسبه خطا
         loss = np.linalg.norm(p - np.dot(u, v.T)) + l2_u * np.linalg.norm(u) + l2_v * np.linalg.norm(v)
         print('Loss:', loss)
-
+def autoEncoder(ratio_l, ratio_u, batch, W1, W2, xtrain, x_new, u, b1, b2, c1, c2, accList, EPOCH_NUM, LEARNING_RATE, denoise=True):
         # به‌روزرسانی وزن‌ها با استفاده از اتواینکودر
         W1, W2, b1, b2, c1, c2 = autoEncoder(ratio_l, ratio_u, batch, W1, W2, xtrain, x_new, u, b1, b2, c1, c2, accList, EPOCH_NUM, LEARNING_RATE, denoise=True)
         hidden = getoutPut(W1, W2, b1, b2, xtrain, accList)
         u = hidden
         print('Updated loss after autoencoder:', np.linalg.norm(p - np.dot(u, v.T)))
-
+ pass
     # ذخیره ماتریس‌های نهایی
     with h5py.File('u_final_auto.h5', 'w') as hf:
         hf.create_dataset("u", data=u)
