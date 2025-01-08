@@ -1,6 +1,6 @@
 import numpy as np
 import h5py
-from auto_functions as auto
+ 
 from auto_functions import initialization, autoEncoder, getoutPut
 # Hyperparameters and Initialization
 INPUT_LAYER = 314
@@ -20,7 +20,7 @@ ratio_u = 1000000.0
 HIDDEN_UNIT = [HIDDEN_UNIT1, HIDDEN_UNIT2]
 
 # مقداردهی اولیه
-W1, W2, b1, b2, c1, c2 = auto.initialization(INPUT_LAYER, HIDDEN_UNIT, mu, sigma)
+W1, W2, b1, b2, c1, c2 = auto_function.initialization(INPUT_LAYER, HIDDEN_UNIT, mu, sigma)
 
 
 def main(denoise=True):
@@ -40,7 +40,7 @@ def main(denoise=True):
         rating_mat = hf['rating'][:]
     
     # Initialization
-    W1, W2, b1, b2, c1, c2 = auto.initialization(INPUT_LAYER, HIDDEN_UNIT1, HIDDEN_UNIT2, mu, sigma)
+    W1, W2, b1, b2, c1, c2 = auto_function.initialization(INPUT_LAYER, HIDDEN_UNIT1, HIDDEN_UNIT2, mu, sigma)
     u = np.random.normal(0, 0.1, (rating_mat.shape[0], l))
     v = np.random.normal(0, 0.1, (rating_mat.shape[1], l))
 
@@ -72,8 +72,8 @@ def main(denoise=True):
         print('Loss:', loss)
 
         # Run the autoencoder function to update weights
-        W1, W2, b1, b2, c1, c2 = auto.autoEncoder(ratio_l, ratio_u, batch, W1, W2, xtrain, x_new, u, b1, b2, c1, c2, accList, EPOCH_NUM, LEARNING_RATE, denoise=True)
-        hidden = auto.getoutPut(W1, W2, b1, b2, xtrain, accList)
+        W1, W2, b1, b2, c1, c2 = auto_function.autoEncoder(ratio_l, ratio_u, batch, W1, W2, xtrain, x_new, u, b1, b2, c1, c2, accList, EPOCH_NUM, LEARNING_RATE, denoise=True)
+        hidden = auto_function.getoutPut(W1, W2, b1, b2, xtrain, accList)
         u = hidden
         print('Updated loss after autoencoder:', np.linalg.norm(p - np.dot(u, v.T)))
 
