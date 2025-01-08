@@ -1,7 +1,7 @@
 import numpy as np
 import h5py
 from scipy import stats
-import auto_fun as auto
+import auto_functions as auto
 
 alpha = 40
 
