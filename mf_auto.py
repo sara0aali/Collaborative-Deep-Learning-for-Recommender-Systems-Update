@@ -2,6 +2,7 @@ import numpy as np
 import h5py
 from auto_functions import initialization, autoEncoder, getoutPut
 import auto_functions as auto
+W1, W2, b1, b2, c1, c2 = auto.initialization(INPUT_LAYER, HIDDEN_UNIT, mu, sigma)
 
 # Hyperparameters and Initialization
 INPUT_LAYER = 314
