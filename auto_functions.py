@@ -1,5 +1,7 @@
 import numpy as np
 import h5py
+import auto_functions as auto
+
 def initialization(INPUT_LAYER, HIDDEN_UNIT, mu, sigma):
     # کد مقداردهی اولیه
 
