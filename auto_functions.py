@@ -79,7 +79,7 @@ def main(denoise=True):
 
         # به‌روزرسانی وزن‌ها با استفاده از اتواینکودر
         W1, W2, b1, b2, c1, c2 = autoEncoder(ratio_l, ratio_u, batch, W1, W2, xtrain, x_new, u, b1, b2, c1, c2, accList, EPOCH_NUM, LEARNING_RATE, denoise=True)
-        hidden = auto.getoutPut(W1, W2, b1, b2, xtrain, accList)
+        hidden = getoutPut(W1, W2, b1, b2, xtrain, accList)
         u = hidden
         print('Updated loss after autoencoder:', np.linalg.norm(p - np.dot(u, v.T)))
 
