@@ -1,7 +1,7 @@
 import numpy as np
 import h5py
-
-
+def initialization(INPUT_LAYER, HIDDEN_UNIT, mu, sigma):
+    # کد مقداردهی اولیه
 
 # Hyperparameters and Initialization
 INPUT_LAYER = 314
@@ -18,7 +18,7 @@ batch = 500
 ratio_l = 10.0
 ratio_u = 1000000.0
 
-
+ pass
 def main(denoise=True):
     # تعریف تعداد نرون‌های لایه‌های مخفی به صورت یک لیست
     HIDDEN_UNIT = [HIDDEN_UNIT1, HIDDEN_UNIT2]
