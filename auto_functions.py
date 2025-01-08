@@ -83,22 +83,23 @@ def autoEncoder(ratio_l, ratio_u, batch, W1, W2, xtrain, x_new, u, b1, b2, c1, c
         u = hidden
         print('Updated loss after autoencoder:', np.linalg.norm(p - np.dot(u, v.T)))
     # ذخیره ماتریس‌های نهایی
-    with h5py.File('u_final_auto.h5', 'w') as hf:
-        hf.create_dataset("u", data=u)
-    with h5py.File('v_final_auto.h5', 'w') as hf:
-        hf.create_dataset("v", data=v)
-    with h5py.File('W1_final.h5', 'w') as hf:
-        hf.create_dataset("W1", data=W1)
-    with h5py.File('b1_final.h5', 'w') as hf:
-        hf.create_dataset("b1", data=b1)
-    with h5py.File('c1_final.h5', 'w') as hf:
-        hf.create_dataset("c1", data=c1)
-    with h5py.File('W2_final.h5', 'w') as hf:
-        hf.create_dataset("W2", data=W2)
-    with h5py.File('b2_final.h5', 'w') as hf:
-        hf.create_dataset("b2", data=b2)
-    with h5py.File('c2_final.h5', 'w') as hf:
-        hf.create_dataset("c2", data=c2)
+with h5py.File('u_final_auto.h5', 'w') as hf:
+    hf.create_dataset("u", data=u)
+with h5py.File('v_final_auto.h5', 'w') as hf:
+    hf.create_dataset("v", data=v)
+with h5py.File('W1_final.h5', 'w') as hf:
+    hf.create_dataset("W1", data=W1)
+with h5py.File('b1_final.h5', 'w') as hf:
+    hf.create_dataset("b1", data=b1)
+with h5py.File('c1_final.h5', 'w') as hf:
+    hf.create_dataset("c1", data=c1)
+with h5py.File('W2_final.h5', 'w') as hf:
+    hf.create_dataset("W2", data=W2)
+with h5py.File('b2_final.h5', 'w') as hf:
+    hf.create_dataset("b2", data=b2)
+with h5py.File('c2_final.h5', 'w') as hf:
+    hf.create_dataset("c2", data=c2)
+
 
     return hidden
 
