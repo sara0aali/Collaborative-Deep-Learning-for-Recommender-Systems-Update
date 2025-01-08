@@ -1,9 +1,14 @@
 import numpy as np
 import h5py
-import auto_functions as auto
 
 def initialization(INPUT_LAYER, HIDDEN_UNIT, mu, sigma):
-    # کد مقداردهی اولیه
+    W1 = np.random.normal(mu, sigma, (INPUT_LAYER, HIDDEN_UNIT[0]))
+    W2 = np.random.normal(mu, sigma, (HIDDEN_UNIT[0], HIDDEN_UNIT[1]))
+    b1 = np.zeros(HIDDEN_UNIT[0])
+    b2 = np.zeros(HIDDEN_UNIT[1])
+    c1 = np.zeros(HIDDEN_UNIT[0])
+    c2 = np.zeros(HIDDEN_UNIT[1])
+    return W1, W2, b1, b2, c1, c2
 
 # Hyperparameters and Initialization
 INPUT_LAYER = 314
@@ -20,7 +25,6 @@ batch = 500
 ratio_l = 10.0
 ratio_u = 1000000.0
 
- pass
 def main(denoise=True):
     # تعریف تعداد نرون‌های لایه‌های مخفی به صورت یک لیست
     HIDDEN_UNIT = [HIDDEN_UNIT1, HIDDEN_UNIT2]
