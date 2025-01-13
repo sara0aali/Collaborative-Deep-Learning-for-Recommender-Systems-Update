@@ -1,9 +1,11 @@
 import numpy as np
 import h5py
 from scipy import stats
-import auto_functions as auto
 
 alpha = 40
+lambda_u = 0.01  # L2 regularization term for user matrix
+lambda_v = 0.01  # L2 regularization term for item matrix
+learning_rate = 0.001  # Learning rate for gradient descent
 
 # Load training and validation subset
 with h5py.File('rating_tr_numpy.h5', 'r') as hf:
@@ -21,6 +23,14 @@ with h5py.File('v_40_40+100.h5', 'r') as hf:
 # Define preference and confidence matrices
 p = (rating_tr > 0).astype(int)
 c = 1 + alpha * rating_tr
+
+# Update matrices using gradient descent with L2 regularization
+for i in range(u.shape[0]):
+    for j in range(v.shape[1]):
+        if p[i, j] > 0:
+            err_ij = rating_tr[i, j] - np.dot(u[i, :], v[:, j])
+            u[i, :] += learning_rate * (err_ij * v[:, j] - lambda_u * u[i, :])
+            v[:, j] += learning_rate * (err_ij * u[i, :] - lambda_v * v[:, j])
 
 # Calculate predicted ratings
 r_pred = np.dot(u, v.T)
