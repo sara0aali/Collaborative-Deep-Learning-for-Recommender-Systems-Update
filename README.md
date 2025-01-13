@@ -26,6 +26,4 @@ The original implementation of this project can be found on GitHub: [Collaborati
      - Original: Extended the model with three hidden layers for deeper feature extraction.
      - Enhancements: Same as above, with adjustments to accommodate the increased complexity.
 
-
- How to Run
 Ensure that all dependencies are installed as specified in the project's requirements file.
