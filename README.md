@@ -1,9 +1,34 @@
-In the **Collaborative Deep Learning for Recommender Systems** project, a hybrid model combining the **Stacked Denoising Autoencoder** (SDAE) with **Matrix Factorization** (MF) is applied to predict customer purchase behavior for the upcoming month based on purchase history and user information in the Santander dataset.
 
-This project was developed by **Sampath Chanda**, **Suyin Wang**, and **Xiaoou Zhang**.
+ Collaborative Deep Learning for Recommender Systems
 
-- User information is generated in **"matrix_factorization.ipynb"**, and the rating matrix is produced in **"rating_matrix.py"**.
-- The main code for the SDAE-MF hybrid model is found in **"mf_auto_mono.py"** (for a single-hidden-layer SDAE) and **"mf_auto.py"** (for a three-hidden-layer SDAE).
+In this project, we enhance the original Collaborative Deep Learning for Recommender Systems by introducing several optimizations to the hybrid model that combines the Stacked Denoising Autoencoder (SDAE) with Matrix Factorization (MF). This model aims to predict customer purchase behavior for the upcoming month based on historical purchase data and user information from the Santander dataset.
 
-### Updates and Optimizations
-In **"mf_auto_mono_v2.py"** and **"mf_auto_v2.py"**, the performance of matrix factorization has been enhanced by leveraging the sparsity of the rating matrix, alongside additional optimizations in **L2 Regularization** and **Gradient Descent**, which further improve the accuracy and efficiency of the model.
+ Project Contributors
+- Sampath Chanda
+- Suyin Wang
+- Xiaoou Zhang
+
+ Original Project
+The original implementation of this project can be found on GitHub: [Collaborative-Deep-Learning-for-Recommender-Systems](https://github.com/xiaoouzhang/Collaborative-Deep-Learning-for-Recommender-Systems.git).
+
+ Enhancements and Modifications
+
+1. Matrix Factorization (`matrix_factorization.ipynb`):
+   - Original: Generated user information for the model.
+   - Enhancements: Optimized the generation process to better handle sparsity and efficiency in data handling.
+
+2. Rating Matrix Generation (`rating_matrix.py`):
+   - Original: Created the rating matrix used for training the model.
+   - Enhancements: Improved the efficiency of matrix creation by leveraging sparse matrix operations.
+
+3. Hybrid Model Implementation:
+   - Single-Hidden-Layer SDAE (`mf_auto_mono.py`):
+     - Original: Implemented the hybrid model with a single hidden layer.
+     - Enhancements: Introduced L2 regularization and gradient descent optimizations to improve model training and prediction accuracy.
+   - Three-Hidden-Layer SDAE (`mf_auto.py`):
+     - Original: Extended the model with three hidden layers for deeper feature extraction.
+     - Enhancements: Same as above, with adjustments to accommodate the increased complexity.
+
+
+ How to Run
+Ensure that all dependencies are installed as specified in the project's requirements file.
