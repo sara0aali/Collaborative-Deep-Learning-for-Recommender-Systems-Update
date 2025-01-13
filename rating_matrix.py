@@ -1,33 +1,43 @@
+#generate rating matrix
+
 import numpy as np
 import pandas as pd
 
-# Load training rating data and create training rating matrix
-with pd.HDFStore('ratingDF_tr.h5') as store:
-    df_rating_tr = store['df_rating_tr']
+store = pd.HDFStore('ratingDF_tr.h5')
+df_rating = store['df_rating_tr']
 
-user_id = np.array(df_rating_tr['ncodpers'].unique())
-prod_id = np.sort(np.array(df_rating_tr['prodIdx'].unique()))
+user_id=np.array(df_rating['ncodpers'].unique())
+prod_id=np.array(df_rating['prodIdx'].unique())
+prod_id=np.sort(prod_id)
+#u_dictionary=dict(zip(user_id,np.arange(user_id.size)))
 
-# Create rating matrix for training data
-rating_mat_tr = pd.DataFrame(0, index=user_id, columns=prod_id)
-rating_mat_tr = rating_mat_tr.add(df_rating_tr.pivot(index='ncodpers', columns='prodIdx', values='rating').fillna(0), fill_value=0)
+rating_mat=pd.DataFrame(np.zeros((user_id.size,prod_id.size)),user_id,prod_id)
+for i in range(df_rating.shape[0]):
+    #sample_prod_id=df_rating.iloc[i].prodIdx
+    #rating_mat.loc[df_rating.iloc[i].ncodpers][rating_mat.columns[df_rating.iloc[i].prodIdx-1]]=df_rating.iloc[i].rating
+    rating_mat.loc[df_rating.iloc[i].ncodpers,df_rating.iloc[i].prodIdx]=df_rating.iloc[i].rating
 
-# Save the training rating matrix
-with pd.HDFStore('rating_mat_tr.h5') as store:
-    store['rating_mat'] = rating_mat_tr
+store = pd.HDFStore('rating_mat_tr.h5')
+store['rating_mat'] = rating_mat
+store.close()
 
-print('Training set complete')
+print('training set complete')
 
-# Load validation rating data and create validation rating matrix
-with pd.HDFStore('ratingDF_val.h5') as store:
-    df_rating_val = store['df_rating_val']
+store = pd.HDFStore('ratingDF_val.h5')
+df_rating = store['df_rating_val']
 
-# Create rating matrix for validation data
-rating_mat_val = pd.DataFrame(0, index=user_id, columns=prod_id)
-rating_mat_val.update(df_rating_val.pivot(index='ncodpers', columns='prodIdx', values='rating').fillna(0))
+#u_dictionary=dict(zip(user_id,np.arange(user_id.size)))
 
-# Save the validation rating matrix
-with pd.HDFStore('rating_mat_val.h5') as store:
-    store['rating_mat'] = rating_mat_val
+rating_mat=pd.DataFrame(np.zeros((user_id.size,prod_id.size)),user_id,prod_id)
+for i in range(df_rating.shape[0]):
+    if df_rating.iloc[i].ncodpers in rating_mat.index:
+        #print('old')
+        #rating_mat.loc[df_rating.iloc[i].ncodpers,df_rating.iloc[i].prodIdx]=rating_mat.loc[df_rating.iloc[i].ncodpers,df_rating.iloc[i].prodIdx]+df_rating.iloc[i].rating
+        rating_mat.loc[df_rating.iloc[i].ncodpers,df_rating.iloc[i].prodIdx]=df_rating.iloc[i].rating
+    else:
+        print('new')
+    print(i)
 
-print('Validation set complete')
+store = pd.HDFStore('rating_mat_val.h5')
+store['rating_mat'] = rating_mat
+store.close()
