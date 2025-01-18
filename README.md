@@ -5,9 +5,7 @@ Project Contributors
 Sampath Chanda
 Suyin Wang
 Xiaoou Zhang
-
-Original Project
-The original implementation of this project can be found on GitHub: Collaborative-Deep-Learning-for-Recommender-Systems.
+Original Project The original implementation of this project can be found on GitHub: Collaborative-Deep-Learning-for-Recommender-Systems.
 
 Enhancements and Modifications
 
@@ -15,21 +13,20 @@ Matrix Factorization (matrix_factorization.ipynb):
 
 Original: Generated user information for the model.
 Enhancements: Optimized the generation process to better handle sparsity and efficiency in data handling.
-
 Rating Matrix Generation (rating_matrix.py):
 
 Original: Created the rating matrix used for training the model.
 Enhancements: Improved the efficiency of matrix creation by leveraging sparse matrix operations.
-
 Hybrid Model Implementation:
 
 Single-Hidden-Layer SDAE (mf_auto_mono.py):
 Original: Implemented the hybrid model with a single hidden layer.
 Enhancements: Introduced L2 regularization and gradient descent optimizations to improve model training and prediction accuracy.
-
 Three-Hidden-Layer SDAE (mf_auto.py):
 Original: Extended the model with three hidden layers for deeper feature extraction.
 Enhancements: Same as above, with adjustments to accommodate the increased complexity.
+Ensure that all dependencies are installed as specified in the project's requirements file.
+
 
 Testing and Explainability (testing.py):
 
