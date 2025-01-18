@@ -5,7 +5,7 @@ Project Contributors
 Sampath Chanda
 Suyin Wang
 Xiaoou Zhang
-Original Project The original implementation of this project can be found on GitHub: Collaborative-Deep-Learning-for-Recommender-Systems.
+Original Project The original implementation of this project can be found on GitHub:(https://github.com/xiaoouzhang/Collaborative-Deep-Learning-for-Recommender-Systems.git)
 
 Enhancements and Modifications
 
