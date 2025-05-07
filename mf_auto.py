@@ -51,26 +51,29 @@ def main(denoise=True):
     c = 1 + alpha * rating_mat
 
     print('Start training...')
-    for iterate in range(1):  # One iteration for simplicity
-        # Update u
-        for i in range(rating_mat.shape[0]):
-            c_diag = np.diag(c[i, :])
-            A_u = np.dot(np.dot(v.T, c_diag), v) + l2_u * np.identity(l)
-            b_u = np.dot(np.dot(p[i, :], c_diag), v)
-            u[i, :] = np.linalg.solve(A_u, b_u)
-        print('u update complete')
+    # فرض: learning_rate، lambda_u و lambda_v قبلاً تعریف شدن
+learning_rate = 0.005  # مقدار مناسب انتخاب کن
+lambda_u = 0.01
+lambda_v = 0.01
 
-        # Update v
+for iterate in range(1):  # یا بیشتر، بسته به نیاز
+    for i in range(rating_mat.shape[0]):
         for j in range(rating_mat.shape[1]):
-            c_diag = np.diag(c[:, j])
-            A_v = np.dot(np.dot(u.T, c_diag), u) + l2_v * np.identity(l)
-            b_v = np.dot(np.dot(p[:, j], c_diag), u)
-            v[j, :] = np.linalg.solve(A_v, b_v)
-        print('v update complete')
+            if p[i, j] > 0:
+                err_ij = rating_mat[i, j] - np.dot(u[i, :], v[j, :])
+                # گرادیان‌های u و v
+                grad_u = -2 * c[i, j] * err_ij * v[j, :] + 2 * lambda_u * u[i, :]
+                grad_v = -2 * c[i, j] * err_ij * u[i, :] + 2 * lambda_v * v[j, :]
+                # آپدیت پارامترها
+                u[i, :] -= learning_rate * grad_u
+                v[j, :] -= learning_rate * grad_v
+    print('Gradient update complete')
+
 
         # Calculate loss
         loss = np.linalg.norm(p - np.dot(u, v.T)) + l2_u * np.linalg.norm(u) + l2_v * np.linalg.norm(v)
         print('Loss:', loss)
+  
 
         # Run the autoencoder function to update weights
         W1, W2, b1, b2, c1, c2 = auto_function.autoEncoder(ratio_l, ratio_u, batch, W1, W2, xtrain, x_new, u, b1, b2, c1, c2, accList, EPOCH_NUM, LEARNING_RATE, denoise=True)
